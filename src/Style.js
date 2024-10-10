@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft  } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
 import { createGlobalStyle } from "styled-components";
+
+
 
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -44,6 +48,57 @@ export const LinkStyled = styled(Link)`
   }
 `;
 
+export const Next = styled(FaArrowAltCircleRight)`
+  position: absolute;
+  top: 10px;
+  right: 45%;
+  color: var(--white_soft);
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--brand_color);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
+`
+
+export const Previous = styled(FaArrowAltCircleLeft)`
+  position: absolute;
+  top: 10px;
+  left: 45%;
+  color: var(--white_soft);
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--brand_color);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
+`
+
+export const Close = styled(IoMdCloseCircle)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--white_soft);
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--brand_color);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
+`
+
 // Header styles -----------------------------------------
 
 export const HeaderPage = styled.header`
@@ -67,12 +122,14 @@ export const HeaderPage = styled.header`
 
 export const LinkHome = styled(LinkStyled)`
   text-decoration: none;
-  margin-right: 50px;
+  margin: 0px 0px 0px 10px;
   background-color: #212121;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+
+  
 
   &:hover {
     background-color: #000;
@@ -80,11 +137,25 @@ export const LinkHome = styled(LinkStyled)`
   }
 `;
 
+export const DivPages = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-right: 50px;
+`;
+
 // HomePage styles ---------------------------------------
 
 export const Title = styled.h2`
   color: #fff;
-  padding-bottom: 50px;
+  margin-top: 100px;
+  font-size: 3rem;
+`;
+
+export const Title2 = styled.h2`
+  color: #fff;
+  margin-top: 100px;
   font-size: 3rem;
 `;
 
@@ -124,6 +195,7 @@ export const ListItem = styled(LinkStyled)`
 // PokemonDetails styles ---------------------------------
 
 export const DivDetails = styled.div`
+  position:relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -247,3 +319,57 @@ export const ProgressBarFill = styled.div`
   border-radius: 50px;
   transition: width 0.3s ease-in-out;
 `;
+
+
+// SearchBar styles -----------------------------------------
+
+export const SearchBar = styled.input`
+  width: 400px;
+  height: 30px;
+  background-color: var(--white_soft);
+  text-align: center;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  margin: 10px 0px 20px 0px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  box-shadow: 0px 0px 10px 0px var(--brand_color);
+`;
+
+export const Loading = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 2rem;
+  background-color: var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const rotate = keyframes`
+  100% {
+    transform: rotate(-360deg);
+  }
+`
+
+export const Spinner = styled.div`
+  width: 1em;
+  height: 1em;
+  background-color: var(--brand_color);
+  border-radius: 50%;
+  box-shadow: 0 -3em rgba(255,255,255,1),
+   2.24em -2.25em rgba(255,255,255,0.875),
+   3em 0 rgba(255,255,255,0.75),
+   2.25em 2.25em rgba(255,255,255,0.625),
+   0 3em rgba(255,255,255,0.5),
+   -2.24em 2.25em rgba(255,255,255,0.375),
+   -3em 0 rgba(255,255,255,0.25),
+   -2.25em -2.25em rgba(255,255,255,0.125); 
+  animation: ${rotate} 1.5s linear infinite;
+`
+

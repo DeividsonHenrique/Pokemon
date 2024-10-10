@@ -2,24 +2,41 @@ import { useEffect, useState } from "react";
 import {
   HomePageSection,
   ListItem,
-  Title,
+  Title2,
   UlList,
   Loading,
   Spinner,
-} from "../Style";
+} from "../Style.js";
+import SearchPokemon from "./SearchPokemon.jsx";
 
-function HomePage() {
+function AllPokemons() {
   const [pokemonList, setPokemonList] = useState([]);
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
+    // Fazer a requisição à API para obter a lista de Pokémon
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then((response) => response.json())
       .then((data) => {
         setPokemonList(data.results);
+        setFilteredPokemon(data.results);
         setIsLoading(false);
       });
   }, []);
+
+  const getPokemonId = (url) => {
+    const urlParts = url.split("/");
+    return urlParts[urlParts.length - 2];
+  };
+
+  const handleSearch = (query) => {
+    // Filtrar os Pokémon com base na busca
+    const filtered = pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredPokemon(filtered);
+  };
 
   if (isLoading)
     return (
@@ -27,18 +44,14 @@ function HomePage() {
         <Spinner />
       </Loading>
     );
-
-  const getPokemonId = (url) => {
-    const urlArray = url.split("/");
-    return urlArray[urlArray.length - 2];
-  };
-
   return (
     <>
       <body>
-        <Title>Principais Pokémons</Title>
-        <HomePageSection className="pokemon-list">
-          {pokemonList.map((pokemon, index) => {
+        <Title2>Todos Pokémons</Title2>
+
+        <SearchPokemon onSearch={handleSearch} />
+        <HomePageSection>
+          {filteredPokemon.map((pokemon, index) => {
             const pokemonId = getPokemonId(pokemon.url);
             const pokemonImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
             return (
@@ -56,4 +69,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AllPokemons;

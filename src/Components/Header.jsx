@@ -1,10 +1,13 @@
-import { HeaderPage, LinkHome } from "../Style";
+import { HeaderPage, LinkHome, DivPages } from "../Style";
 
 function Header() {
   return (
-    <HeaderPage className="App-header">
+    <HeaderPage>
       <h1>Pokemon</h1>
-      <LinkHome to="/">Home</LinkHome>
+      <DivPages>
+        <LinkHome to="/all-pokemons">Todos Pokemons</LinkHome>
+        <LinkHome to="/">Home</LinkHome>
+      </DivPages>
     </HeaderPage>
   );
 }

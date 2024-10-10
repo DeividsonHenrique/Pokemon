@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   DivDetails,
   DivImg,
@@ -7,11 +7,17 @@ import {
   ProgressBarContainer,
   ProgressBarFill,
   typeColors,
+  Next,
+  Previous,
+  Close,
+  Loading,
+  Spinner,
 } from "../Style";
 
 function PokemonDetails() {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -19,11 +25,16 @@ function PokemonDetails() {
       .then((data) => setPokemon(data));
   }, [id]);
 
-  if (!pokemon) return <div>Carregando...</div>;
+  if (!pokemon)
+    return (
+      <Loading>
+        <Spinner />
+      </Loading>
+    );
 
   // eslint-disable-next-line react/prop-types
   const ProgressBar = ({ baseStat }) => {
-    const maxStat = 150;
+    const maxStat = 200;
     const percentage = (baseStat / maxStat) * 100;
 
     return (
@@ -45,9 +56,28 @@ function PokemonDetails() {
     return pesoEmKg < 1 ? `${pesoEmKg * 1000} g` : `${pesoEmKg.toFixed(1)} kg`;
   };
 
+  const NextPokemon = ({ id }) => {
+    const nextId = parseInt(id) + 1;
+    return `/pokemon/${nextId}`;
+  };
+
+  const PreviousPokemon = ({ id }) => {
+    const previousId = parseInt(id) - 1;
+    return `/pokemon/${previousId}`;
+  };
+
+  const back = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <DivDetails>
+        <Next onClick={() => (window.location.href = NextPokemon({ id }))} />
+        <Previous
+          onClick={() => (window.location.href = PreviousPokemon({ id }))}
+        />
+        <Close onClick={back} />
         <DivImg>
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
