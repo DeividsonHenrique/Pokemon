@@ -1,10 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft  } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { createGlobalStyle } from "styled-components";
-
-
 
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -63,7 +61,16 @@ export const Next = styled(FaArrowAltCircleRight)`
     color: var(--brand_color);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   }
-`
+
+  @media (max-width: 900px) {
+    right: 40%;
+  }
+
+  @media (max-width: 600px) {
+    right: 10%;
+    top: 100px;
+  }
+`;
 
 export const Previous = styled(FaArrowAltCircleLeft)`
   position: absolute;
@@ -80,7 +87,16 @@ export const Previous = styled(FaArrowAltCircleLeft)`
     color: var(--brand_color);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   }
-`
+
+  @media (max-width: 900px) {
+    left: 40%;
+  }
+
+  @media (max-width: 600px) {
+    left: 10%;
+    top: 100px;
+  }
+`;
 
 export const Close = styled(IoMdCloseCircle)`
   position: absolute;
@@ -97,7 +113,7 @@ export const Close = styled(IoMdCloseCircle)`
     color: var(--brand_color);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   }
-`
+`;
 
 // Header styles -----------------------------------------
 
@@ -118,6 +134,15 @@ export const HeaderPage = styled.header`
     margin-left: 50px;
     background-color: var(--white_soft);
   }
+
+  @media (max-width: 600px) {
+    height: 50px;
+
+    h1 {
+      font-size: 1rem;
+      margin-left: 20px;
+    }
+  }
 `;
 
 export const LinkHome = styled(LinkStyled)`
@@ -129,11 +154,15 @@ export const LinkHome = styled(LinkStyled)`
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
-  
-
   &:hover {
     background-color: #000;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  @media (max-width: 600px) {
+    margin: 0px 0px 0px 5px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 `;
 
@@ -143,6 +172,10 @@ export const DivPages = styled.div`
   align-items: center;
   background-color: transparent;
   margin-right: 50px;
+
+  @media (max-width: 600px) {
+    margin-right: 20px;
+  }
 `;
 
 // HomePage styles ---------------------------------------
@@ -151,12 +184,30 @@ export const Title = styled.h2`
   color: #fff;
   margin-top: 100px;
   font-size: 3rem;
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Title2 = styled.h2`
   color: #fff;
   margin-top: 100px;
   font-size: 3rem;
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
 `;
 
 export const HomePageSection = styled.section`
@@ -167,6 +218,10 @@ export const HomePageSection = styled.section`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  p {
+    text-align: center;
+  }
 `;
 
 export const UlList = styled.ul`
@@ -195,15 +250,26 @@ export const ListItem = styled(LinkStyled)`
 // PokemonDetails styles ---------------------------------
 
 export const DivDetails = styled.div`
-  position:relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: #ccc;
-  border-radius: 20px;
-  box-shadow: 0px 0px 10px 2px var(--brand_color);
+  section {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #ccc;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px var(--brand_color);
+    margin: 0 auto;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      width: 90%;
+
+      margin-top: 100px;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export const DivImg = styled.div`
@@ -235,7 +301,6 @@ export const DivImg = styled.div`
   div {
     background-color: transparent;
     display: flex;
-    width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -251,6 +316,40 @@ export const DivImg = styled.div`
       color: white;
       border-radius: 5px;
       cursor: pointer;
+    }
+  }
+
+  @media (max-width: 900px) {
+    height: 300px;
+    width: 300px;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      width: 40%;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 300px;
+    width: 300px;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      width: 40%;
+    }
+
+    p {
+      font-size: 1rem;
     }
   }
 `;
@@ -302,6 +401,28 @@ export const Stats = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
   }
+
+  @media (max-width: 900px) {
+    height: 300px;
+    width: 300px;
+    p {
+      font-size: 1rem;
+    }
+    li {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 280px;
+    width: 350px;
+    p {
+      font-size: 1rem;
+    }
+    li {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const ProgressBarContainer = styled.div`
@@ -309,6 +430,14 @@ export const ProgressBarContainer = styled.div`
   background-color: #181818;
   border-radius: 50px;
   margin-bottom: 5px;
+
+  @media (max-width: 900px) {
+    width: 250px;
+  }
+
+  @media (max-width: 600px) {
+    width: 250px;
+  }
 `;
 
 export const ProgressBarFill = styled.div`
@@ -318,8 +447,11 @@ export const ProgressBarFill = styled.div`
     props.percentage > 70 ? "green" : props.percentage > 40 ? "yellow" : "red"};
   border-radius: 50px;
   transition: width 0.3s ease-in-out;
-`;
 
+  @media (max-width: 600px) {
+    height: 8px;
+  }
+`;
 
 // SearchBar styles -----------------------------------------
 
@@ -336,6 +468,10 @@ export const SearchBar = styled.input`
   font-weight: 500;
   text-transform: capitalize;
   box-shadow: 0px 0px 10px 0px var(--brand_color);
+
+  @media (max-width: 600px) {
+    width: 250px;
+  }
 `;
 
 export const Loading = styled.div`
@@ -349,27 +485,34 @@ export const Loading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const rotate = keyframes`
   100% {
     transform: rotate(-360deg);
   }
-`
+`;
 
 export const Spinner = styled.div`
   width: 1em;
   height: 1em;
   background-color: var(--brand_color);
   border-radius: 50%;
-  box-shadow: 0 -3em rgba(255,255,255,1),
-   2.24em -2.25em rgba(255,255,255,0.875),
-   3em 0 rgba(255,255,255,0.75),
-   2.25em 2.25em rgba(255,255,255,0.625),
-   0 3em rgba(255,255,255,0.5),
-   -2.24em 2.25em rgba(255,255,255,0.375),
-   -3em 0 rgba(255,255,255,0.25),
-   -2.25em -2.25em rgba(255,255,255,0.125); 
+  box-shadow: 0 -3em rgba(255, 255, 255, 1),
+    2.24em -2.25em rgba(255, 255, 255, 0.875), 3em 0 rgba(255, 255, 255, 0.75),
+    2.25em 2.25em rgba(255, 255, 255, 0.625), 0 3em rgba(255, 255, 255, 0.5),
+    -2.24em 2.25em rgba(255, 255, 255, 0.375), -3em 0 rgba(255, 255, 255, 0.25),
+    -2.25em -2.25em rgba(255, 255, 255, 0.125);
   animation: ${rotate} 1.5s linear infinite;
-`
 
+  @media (max-width: 600px) {
+    width: 0.8em;
+    height: 0.8em;
+    box-shadow: 0 -1.5em rgba(255, 255, 255, 1),
+      1.12em -1.125em rgba(255, 255, 255, 0.875), 1.5em 0 rgba(255, 255, 255, 0.75),
+      1.125em 1.125em rgba(255, 255, 255, 0.625), 0 1.5em rgba(255, 255, 255, 0.5),
+      -1.12em 1.125em rgba(255, 255, 255, 0.375), -1.5em 0 rgba(255, 255, 255, 0.25),
+      -1.12em -1.125em rgba(255, 255, 255, 0.125);
+      
+  }
+`;

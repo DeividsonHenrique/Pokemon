@@ -73,42 +73,44 @@ function PokemonDetails() {
   return (
     <>
       <DivDetails>
-        <Next onClick={() => (window.location.href = NextPokemon({ id }))} />
-        <Previous
-          onClick={() => (window.location.href = PreviousPokemon({ id }))}
-        />
-        <Close onClick={back} />
-        <DivImg>
-          <h2>{pokemon.name}</h2>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-          <p>Altura: {formatAltura(pokemon.height)}</p>
-          <p>Peso: {formatPeso(pokemon.weight)}</p>
-          <p>Tipos:</p>
-          <div>
-            {pokemon.types.map((type) => {
-              const typeName = type.type.name;
-              return (
-                <span
-                  key={typeName}
-                  style={{ backgroundColor: typeColors[typeName] }}
-                >
-                  {typeName}
-                </span>
-              );
-            })}
-          </div>
-        </DivImg>
-        <Stats>
-          <p>Estatísticas:</p>
-          <ul>
-            {pokemon.stats.map((stat) => (
-              <li key={stat.stat.name}>
-                {stat.stat.name}: {stat.base_stat}
-                <ProgressBar baseStat={stat.base_stat} />
-              </li>
-            ))}
-          </ul>
-        </Stats>
+        <section>
+          <Next onClick={() => (window.location.href = NextPokemon({ id }))} />
+          <Previous
+            onClick={() => (window.location.href = PreviousPokemon({ id }))}
+          />
+          <Close onClick={back} />
+          <DivImg>
+            <h2>{pokemon.name}</h2>
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <p>Altura: {formatAltura(pokemon.height)}</p>
+            <p>Peso: {formatPeso(pokemon.weight)}</p>
+            <p>Tipos:</p>
+            <div>
+              {pokemon.types.map((type) => {
+                const typeName = type.type.name;
+                return (
+                  <span
+                    key={typeName}
+                    style={{ backgroundColor: typeColors[typeName] }}
+                  >
+                    {typeName}
+                  </span>
+                );
+              })}
+            </div>
+          </DivImg>
+          <Stats>
+            <p>Estatísticas:</p>
+            <ul>
+              {pokemon.stats.map((stat) => (
+                <li key={stat.stat.name}>
+                  {stat.stat.name}: {stat.base_stat}
+                  <ProgressBar baseStat={stat.base_stat} />
+                </li>
+              ))}
+            </ul>
+          </Stats>
+        </section>
       </DivDetails>
     </>
   );
